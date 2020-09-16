@@ -1,15 +1,21 @@
 import React from 'react'
 import {
-  View, Text, StyleSheet, Image, SafeAreaView, Dimensions,
+  View, StyleSheet, Image, SafeAreaView, Dimensions, Text, TextInput,
 } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
+// import * as scale from 'd3-scale'
+// import dateFns from 'date-fns'
+
 import { back } from '../../assets/images'
 import { Fonts } from '../../assets/styles/index'
+import { LineChart } from '../components'
 
 const { width } = Dimensions.get('window')
 
 const HomeDetail = ({ navigation }) => {
+  const data = [28, 31, 28, 27, 26, 25]
+
   return (
     <View style={styles.container}>
       <LinearGradient colors={['#000', '#3b5998', '#fff']} style={{ flex: 1 }}>
@@ -26,6 +32,23 @@ const HomeDetail = ({ navigation }) => {
             <View />
           </View>
         </TouchableOpacity>
+        <View style={{ marginHorizontal: 20 }}>
+          <LineChart data={data} />
+        </View>
+        <View style={{
+          height: 40 / 375 * width,
+          borderRadius: 20 / 375 * width,
+          backgroundColor: '#fff',
+          width: 289 / 375 * width,
+          marginLeft: 17 / 375 * width,
+          marginVertical: 8 / 375 * width,
+          justifyContent: 'center',
+          marginRight: 12 / 375 * width,
+
+        }}
+        >
+          <TextInput style={{ marginLeft: 18 }} placeholder="ToDo..." onChangeText={handleOnChange} />
+        </View>
       </LinearGradient>
     </View>
   )
