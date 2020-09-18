@@ -11,8 +11,10 @@ export const Fonts = {
 }
 export const Colors = {
   primaryBlue: '#56CCF2',
-  primaryYellow: '#F2994A',
+  primaryOrange: '#F2994A',
   backgroudColor: '#fff',
+  gray2: '#4F4F4F',
+  gray4: '#BDBDBD',
 }
 
 export const TextStyles = {

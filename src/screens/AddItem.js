@@ -3,9 +3,9 @@ import {
   View, StyleSheet, TextInput, Text, SafeAreaView, Dimensions, TouchableOpacity,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Fonts, Colors } from '../../assets/styles'
-import { addNewToDo, deleteToDoList, editStatus } from '../redux/actions/addAction'
+import { addNewToDo } from '../redux/actions/addAction'
 
 const { width } = Dimensions.get('window')
 

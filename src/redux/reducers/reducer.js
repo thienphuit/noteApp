@@ -4,11 +4,12 @@ const initState = {
   todoList: [
     { id: 1, title: 'Make a new App', status: false },
     { id: 2, title: 'Make a new App', status: false },
+    { id: 3, title: 'Make a new App', status: true },
   ],
 }
 const toDoReducer = (state = initState, action) => {
   const { payload } = action
-  const ID = function () {
+  const ID = () => {
     // Math.random should be unique because of its seeding algorithm.
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters
     // after the decimal.

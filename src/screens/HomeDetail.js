@@ -47,7 +47,7 @@ const HomeDetail = ({ navigation }) => {
 
         }}
         >
-          <TextInput style={{ marginLeft: 18 }} placeholder="ToDo..." onChangeText={handleOnChange} />
+          <TextInput style={{ marginLeft: 18 }} placeholder="ToDo..." />
         </View>
       </LinearGradient>
     </View>
