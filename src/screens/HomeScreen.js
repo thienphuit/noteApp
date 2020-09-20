@@ -9,7 +9,7 @@ import { TextInput } from 'react-native-gesture-handler'
 import { Fonts, Colors } from '../../assets/styles'
 import { addNewToDo, deleteToDoList, editStatus } from '../redux/actions/addAction'
 import { ItemComponent } from '../components'
-import { send } from '../../assets/images'
+import { send, trash } from '../../assets/images'
 
 const { width } = Dimensions.get('window')
 const initLayout = { width }
@@ -21,6 +21,9 @@ const HomeScreen = () => {
   const handleDeleteItem = (item) => {
     dispatch(deleteToDoList(item))
   }
+  const handleDispath = (id) => {
+    dispatch(editStatus(id))
+  }
 
   const ActiveScreen = () => {
     return (
@@ -28,7 +31,7 @@ const HomeScreen = () => {
         <View style={styles.doneScreen}>
           {
             data.map((x) => (x.status !== true ? <View key={x.id}>
-              <ItemComponent item={x} />
+              <ItemComponent item={x} handleDeleteItem={handleDeleteItem} handleDispath={handleDispath} />
             </View> : null))
           }
         </View>
@@ -40,18 +43,13 @@ const HomeScreen = () => {
     return (
       <View style={styles.doneScreen}>
         {
-          data.map((x) => (x.status === true ? <View key={x.id}>
-            <ItemComponent item={x} handleDeleteItem={handleDeleteItem} />
-          </View> : null))
+          data.map((item) => (item.status === true ? <ItemComponent item={item} /> : null))
         }
       </View>
     )
   }
   const AllTodoScreen = () => {
     const [input, setInput] = useState('')
-    const handleDispath = (id) => {
-      dispatch(editStatus(id))
-    }
     const aniValue = useRef(new Animated.Value(0)).current
     const handleShowInput = () => {
       if (input === '') {
@@ -104,7 +102,7 @@ const HomeScreen = () => {
           <TouchableOpacity onPress={handleShowInput}>
             <View style={styles.allTodoButtonSend}>
               <Image
-                source={send}
+                source={input && input ? send : trash}
                 style={styles.allTodoImage}
               />
             </View>
@@ -163,6 +161,20 @@ const HomeScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  viewDoneScreen: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 22 / 375 * width,
+    marginTop: 10 / 375 * width,
+  },
+  radio: {
+    width: 24 / 375 * width,
+    height: 24 / 375 * width,
+    borderRadius: 12 / 375 * width,
+    borderWidth: 3 / 375 * width,
+    marginRight: 10 / 375 * width,
+    borderColor: Colors.gray4,
+  },
   tabBarLabel: {
     ...Fonts.semiBold,
     fontSize: 18 / 375 * width,
@@ -187,7 +199,7 @@ const styles = StyleSheet.create({
   allTodoInput: {
     ...Fonts.semiBold,
     fontSize: 14 / 375 * width,
-    color: Colors.white,
+    color: Colors.backgroudColor,
     marginHorizontal: 24 / 375 * width,
   },
   allTodoInputView: {
@@ -233,14 +245,6 @@ const styles = StyleSheet.create({
     transform: [
       { rotate: '45deg' },
     ],
-  },
-  radio: {
-    width: 24 / 375 * width,
-    height: 24 / 375 * width,
-    borderRadius: 12 / 375 * width,
-    borderWidth: 3 / 375 * width,
-    marginRight: 10 / 375 * width,
-    borderColor: Colors.gray4,
   },
   contentItem: {
     color: Colors.gray2,

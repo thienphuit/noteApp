@@ -14,6 +14,7 @@ const ItemComponent = (props) => {
     <View style={{
       flexDirection: 'row',
       justifyContent: 'space-between',
+      alignItems: 'center',
       marginBottom: 22 / 375 * width,
       marginTop: 10 / 375 * width,
     }}
@@ -26,9 +27,9 @@ const ItemComponent = (props) => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
+      {item.time && item.time ? <Text style={styles.contentItem}>{item.time}</Text> : <TouchableOpacity onPress={() => handleDeleteItem(item.id)}>
         <Image source={delete_Btn} style={{ width: 24 / 375 * width, height: 24 / 375 * width }} resizeMode="contain" />
-      </TouchableOpacity>
+      </TouchableOpacity>}
       {/* <View style={[styles.diamond, { backgroundColor: item.status ? Colors.primaryBlue : Colors.primaryYellow }]} /> */}
     </View>
 

@@ -4,7 +4,7 @@ const initState = {
   todoList: [
     { id: 1, title: 'Make a new App', status: false },
     { id: 2, title: 'Make a new App', status: false },
-    { id: 3, title: 'Make a new App', status: true },
+    { id: 3, title: 'Make a new App', status: false },
   ],
 }
 const toDoReducer = (state = initState, action) => {
@@ -21,9 +21,12 @@ const toDoReducer = (state = initState, action) => {
     case TodoTypes.DELETE_ITEM:
       return { ...state, todoList: [...state.todoList.filter((x) => x.id !== payload)] }
     case TodoTypes.EDIT_STATUS: {
+      const currentTime = new Date()
+      const mimus = currentTime.getMinutes()
+      const hour = currentTime.getHours()
       return {
         ...state,
-        todoList: [...state.todoList.map((todo) => (todo.id === payload ? { ...todo, status: !todo.status } : todo))],
+        todoList: [...state.todoList.map((todo) => (todo.id === payload ? { ...todo, status: true, time: `${hour}:${mimus}` } : todo))],
       }
     }
     default:
